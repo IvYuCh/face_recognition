@@ -5,12 +5,16 @@ services:
     image: face_recognition
     container_name: face_recognition
     working_dir: /face_recognition/examples
+    tty: true
     build:
       context: .
       #Uncomment this line to run the example on the GPU (requires Nvidia-Docker)
-      # dockerfile: Dockerfile.gpu 
-    command: python3 -u find_faces_in_picture_cnn.py
+      # dockerfile: Dockerfile.gpu
+#    command: python3 -u find_faces_in_picture_cnn.py
     volumes:
       - ./:/face_recognition
+      - ./examples:/faces_dir
+      - ./examples:/video
+      - ./examples/outputs:/output_dir
     #Uncomment this line to run the example on the GPU (requires Nvidia-Docker)
     # runtime: nvidia
